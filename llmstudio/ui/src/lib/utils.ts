@@ -18,9 +18,12 @@ export const generateStream = async (
         'Content-Type': 'application/json;charset=UTF-8',
       },
     });
-    if (!response.ok || !response.body) throw new Error();
+    if (!response.ok || !response.body) {
+      throw new Error(getErrorMessage(response.status));
+    }
     return getIterableStream(response.body);
   } catch (e) {
+    if (e instanceof Error && e.message) throw e;
     throw new Error(getErrorMessage(response?.status));
   }
 };
@@ -31,17 +34,19 @@ export async function* getIterableStream(
   const reader = body.getReader();
   const decoder = new TextDecoder();
 
-  while (true) {
-    const { value, done } = await reader.read();
-    if (done) {
-      break;
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      const decodedChunk = decoder.decode(value, { stream: true });
+      if (decodedChunk) yield decodedChunk;
     }
-    const decodedChunk = decoder.decode(value, { stream: true });
-    yield decodedChunk;
+  } finally {
+    reader.releaseLock();
   }
 }
 
-export const getErrorMessage = (error: Number | undefined) => {
+export const getErrorMessage = (error: number | undefined): string => {
   switch (error) {
     case 400:
       return "Oops! That's not a valid request.";
