@@ -69,3 +69,78 @@ export const getErrorMessage = (error: number | undefined): string => {
       return 'Unknown error';
   }
 };
+
+/**
+ * Accessibility helpers.
+ *
+ * These utilities centralize a few accessibility concerns (screen reader
+ * announcements, reduced-motion preference detection, focus management)
+ * so that UI components can rely on consistent, well-tested behavior
+ * instead of reimplementing the same patterns ad-hoc.
+ */
+
+/**
+ * Returns true if the user has requested reduced motion at the OS level.
+ * Safe to call during SSR — returns false when `window` is unavailable.
+ */
+export const prefersReducedMotion = (): boolean => {
+  if (typeof window === 'undefined' || !window.matchMedia) return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+/**
+ * Announce a message to assistive technologies via an ARIA live region.
+ * Creates (and reuses) a visually-hidden container appended to <body>.
+ *
+ * @param message  The text to announce.
+ * @param priority 'polite' (default) waits for the AT to be idle;
+ *                 'assertive' interrupts the current announcement.
+ */
+export const announceToScreenReader = (
+  message: string,
+  priority: 'polite' | 'assertive' = 'polite'
+): void => {
+  if (typeof document === 'undefined' || !message) return;
+
+  const id = `sr-live-${priority}`;
+  let region = document.getElementById(id);
+  if (!region) {
+    region = document.createElement('div');
+    region.id = id;
+    region.setAttribute('role', priority === 'assertive' ? 'alert' : 'status');
+    region.setAttribute('aria-live', priority);
+    region.setAttribute('aria-atomic', 'true');
+    region.style.cssText =
+      'position:absolute;width:1px;height:1px;padding:0;margin:-1px;' +
+      'overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;';
+    document.body.appendChild(region);
+  }
+
+  // Clear first so identical consecutive messages still get announced.
+  region.textContent = '';
+  window.setTimeout(() => {
+    if (region) region.textContent = message;
+  }, 50);
+};
+
+/** CSS selector matching elements that are typically focusable. */
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled]):not([type="hidden"])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+  '[contenteditable="true"]',
+].join(',');
+
+/** Returns the focusable descendants of `container`, in DOM order. */
+export const getFocusableElements = (
+  container: HTMLElement
+): HTMLElement[] => {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+  ).filter(
+    (el) => !el.hasAttribute('disabled') && el.offsetParent !== null
+  );
+};
