@@ -9,6 +9,7 @@ Thank you for expressing your interest in contributing to LLMstudio. To ensure t
 3. Follow our repo guidelines
    - Ensure that you update any relevant docstrings and comments within your code
    - Run `pre-commit run --all-files` to lint your code
+   - For performance-sensitive changes, include benchmark numbers (before/after) in the PR description
 
 ## Branches
 
