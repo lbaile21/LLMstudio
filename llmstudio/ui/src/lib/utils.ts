@@ -79,13 +79,21 @@ export const getErrorMessage = (error: number | undefined): string => {
  * instead of reimplementing the same patterns ad-hoc.
  */
 
+// Cache the reduced-motion MediaQueryList so we don't re-query on every call.
+// `matchMedia` is cheap but not free, and `prefersReducedMotion` is invoked
+// on many animation paths.
+let reducedMotionMql: MediaQueryList | null = null;
+
 /**
  * Returns true if the user has requested reduced motion at the OS level.
  * Safe to call during SSR — returns false when `window` is unavailable.
  */
 export const prefersReducedMotion = (): boolean => {
   if (typeof window === 'undefined' || !window.matchMedia) return false;
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotionMql) {
+    reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
+  }
+  return reducedMotionMql.matches;
 };
 
 /**
@@ -134,13 +142,23 @@ const FOCUSABLE_SELECTOR = [
   '[contenteditable="true"]',
 ].join(',');
 
-/** Returns the focusable descendants of `container`, in DOM order. */
+/**
+ * Returns the focusable descendants of `container`, in DOM order.
+ *
+ * Uses a single `querySelectorAll` pass plus an in-place visibility filter
+ * to avoid the double-iteration cost of `Array.from(...).filter(...)` on
+ * large containers (e.g. long lists, complex dialogs).
+ */
 export const getFocusableElements = (
   container: HTMLElement
 ): HTMLElement[] => {
-  return Array.from(
-    container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
-  ).filter(
-    (el) => !el.hasAttribute('disabled') && el.offsetParent !== null
-  );
+  const nodes = container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+  const result: HTMLElement[] = [];
+  for (let i = 0; i < nodes.length; i++) {
+    const el = nodes[i];
+    if (!el.hasAttribute('disabled') && el.offsetParent !== null) {
+      result.push(el);
+    }
+  }
+  return result;
 };
