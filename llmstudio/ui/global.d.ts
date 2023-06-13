@@ -16,4 +16,7 @@ interface DotLottiePlayerAttributes {
     style?: React.CSSProperties;
     className?: string;
     children?: React.ReactNode;
+    "aria-label"?: string;
+    "aria-hidden"?: boolean | "true" | "false";
+    role?: string;
 }
