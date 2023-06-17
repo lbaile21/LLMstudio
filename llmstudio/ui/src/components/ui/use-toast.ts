@@ -72,6 +72,27 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+const clearRemoveQueue = (toastId?: string) => {
+  if (toastId === undefined) {
+    toastTimeouts.forEach((timeout) => clearTimeout(timeout))
+    toastTimeouts.clear()
+    return
+  }
+  const timeout = toastTimeouts.get(toastId)
+  if (timeout) {
+    clearTimeout(timeout)
+    toastTimeouts.delete(toastId)
+  }
+}
+
+const markToastsClosed = (
+  toasts: ToasterToast[],
+  toastId?: string
+): ToasterToast[] =>
+  toasts.map((t) =>
+    t.id === toastId || toastId === undefined ? { ...t, open: false } : t
+  )
+
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TOAST":
@@ -91,8 +112,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -103,14 +122,7 @@ export const reducer = (state: State, action: Action): State => {
 
       return {
         ...state,
-        toasts: state.toasts.map((t) =>
-          t.id === toastId || toastId === undefined
-            ? {
-                ...t,
-                open: false,
-              }
-            : t
-        ),
+        toasts: markToastsClosed(state.toasts, toastId),
       }
     }
     case "REMOVE_TOAST":
@@ -189,4 +201,4 @@ function useToast() {
   }
 }
 
-export { useToast, toast }
+export { useToast, toast, clearRemoveQueue }
