@@ -30,6 +30,13 @@
     {
       "files": ["*.yml", "*.yaml"],
       "options": {
+        "singleQuote": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.css", "*.scss"],
+      "options": {
         "singleQuote": false
       }
     }
