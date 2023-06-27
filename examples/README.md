@@ -9,9 +9,10 @@ This directory contains a collection of notebooks that demonstrate how to use LL
 
 ## Running the Examples
 
-Make sure LLMstudio is installed and that the required API keys (e.g. `OPENAI_API_KEY`) are set as environment variables before launching the notebooks:
+Make sure LLMstudio is installed and that the required API keys (e.g. `OPENAI_API_KEY`) are exported in your shell before launching Jupyter:
 
 ```bash
 pip install llmstudio
+export OPENAI_API_KEY="your-key-here"
 jupyter notebook
 ```
