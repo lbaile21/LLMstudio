@@ -17,15 +17,22 @@ Thank you for expressing your interest in contributing to LLMstudio. To ensure t
 When submitting changes that may affect runtime performance (latency, throughput,
 memory usage, or token cost), please include the following in your PR:
 
-- A short description of the workload used to measure performance.
+- A short description of the workload used to measure performance, including
+  the model/provider, prompt size, and concurrency level.
 - Before/after numbers for the relevant metric (e.g. p50/p95 latency, tokens/sec,
-  peak RSS). Include the hardware and Python version when relevant.
+  peak RSS). Include the hardware (CPU/GPU, RAM) and Python version when relevant.
 - The command or script used to reproduce the benchmark, so reviewers can verify
   the results locally.
+- Any caveats: warm vs. cold runs, network variability when hitting remote
+  providers, and whether caching was enabled.
 
 For micro-benchmarks, prefer `pytest-benchmark` or a small standalone script
 committed under `benchmarks/`. Avoid relying on a single run — report the median
-of at least 5 runs to reduce noise.
+of at least 5 runs to reduce noise, and discard the first run when measuring
+steady-state behavior (it often includes import/JIT warmup costs).
+
+When in doubt, err on the side of including more context: a reviewer should be
+able to reproduce your numbers without having to ask follow-up questions.
 
 ## Branches
 
