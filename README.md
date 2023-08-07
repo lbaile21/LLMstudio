@@ -39,40 +39,45 @@ Prompt Engineering at your fingertips
 
 ## 🚀 Quickstart
 
-Don't forget to check out [https://docs.llmstudio.ai](docs) page.
+Don't forget to check out the [docs](https://docs.llmstudio.ai) page.
+
+### Prerequisites
+
+- Python 3.9 or higher
+- (Optional) [`bun`](https://bun.sh) — required only if you plan to use the UI
 
 ## Installation
 
-Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda`
+Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda`.
 
 ```bash
 pip install llmstudio
 ```
 
-Install `bun` if you want to use the UI
+Install `bun` if you want to use the UI:
 
 ```bash
 curl -fsSL https://bun.sh/install | bash
 ```
 
-Create a `.env` file at the same path you'll run **LLMstudio**
+Create a `.env` file at the same path you'll run **LLMstudio** from:
 
 ```bash
 OPENAI_API_KEY="sk-api_key"
 ANTHROPIC_API_KEY="sk-api_key"
 ```
 
-Now you should be able to run **LLMstudio** using the following command.
+Now you should be able to run **LLMstudio** using the following command:
 
 ```bash
 llmstudio server --ui
 ```
 
-When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000)
+When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000).
 
 ## 🤔 About LLMstudio
 
-Powered by TensorOps, LLMstudio redefines your experience with OpenAI, Vertex Ai and more language model providers. More than just a tool, it’s an evolving environment where teams can experiment, modify, and optimize their interactions with advanced language models.
+Powered by TensorOps, LLMstudio redefines your experience with OpenAI, Vertex AI and more language model providers. More than just a tool, it’s an evolving environment where teams can experiment, modify, and optimize their interactions with advanced language models.
 
 Benefits include:
 
@@ -80,13 +85,13 @@ Benefits include:
 - **Execution History**: Keep a detailed log of past executions, track progress, and make iterative improvements effortlessly.
 - **Effortless Data Export**: Share your team's endeavors by exporting data to shareable CSV files.
 
-Step into the future of AI with LLMstudio, by watching our [introduction video](https://www.youtube.com/watch?v=I9h701fbD18)
+Step into the future of AI with LLMstudio, by watching our [introduction video](https://www.youtube.com/watch?v=I9h701fbD18).
 
 ## 📖 Documentation
 
 - [Visit our docs to learn how the SDK works](https://docs.LLMstudio.ai) (coming soon)
 - Checkout our [notebook examples](https://github.com/TensorOpsAI/LLMstudio/tree/main/examples) to follow along with interactive tutorials
-- Checkout out [LLMstudio Architecture Roadmap](https://github.com/TensorOpsAI/LLMstudio/blob/main/docs/LLMstudio-architecture/LLMstudio-architecture-roadmap.md)
+- Checkout the [LLMstudio Architecture Roadmap](https://github.com/TensorOpsAI/LLMstudio/blob/main/docs/LLMstudio-architecture/LLMstudio-architecture-roadmap.md)
 
 ## 👨‍💻 Contributing
 
