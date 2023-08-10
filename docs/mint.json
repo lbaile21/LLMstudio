@@ -36,6 +36,11 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/GkAfPZR9wy"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/tensoropsai/llmstudio"
     }
   ],
   "navigation": [
@@ -65,6 +70,9 @@
     "youtube": "https://www.youtube.com/@tensorops"
   },
   "api": {
-    "baseUrl": "http://localhost:8000"
+    "baseUrl": "http://localhost:8000",
+    "auth": {
+      "method": "none"
+    }
   }
 }
