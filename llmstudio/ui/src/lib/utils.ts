@@ -97,6 +97,28 @@ export const prefersReducedMotion = (): boolean => {
 };
 
 /**
+ * Subscribe to changes in the user's reduced-motion preference. Returns an
+ * unsubscribe function. Useful for components that need to re-render or
+ * adjust animations when the OS-level setting changes at runtime.
+ */
+export const onReducedMotionChange = (
+  listener: (reduced: boolean) => void
+): (() => void) => {
+  if (typeof window === 'undefined' || !window.matchMedia) return () => {};
+  if (!reducedMotionMql) {
+    reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
+  }
+  const handler = (e: MediaQueryListEvent) => listener(e.matches);
+  // Safari < 14 only supports the deprecated addListener/removeListener API.
+  if (reducedMotionMql.addEventListener) {
+    reducedMotionMql.addEventListener('change', handler);
+    return () => reducedMotionMql?.removeEventListener('change', handler);
+  }
+  reducedMotionMql.addListener(handler);
+  return () => reducedMotionMql?.removeListener(handler);
+};
+
+/**
  * Announce a message to assistive technologies via an ARIA live region.
  * Creates (and reuses) a visually-hidden container appended to <body>.
  *
@@ -156,7 +178,11 @@ export const getFocusableElements = (
   const result: HTMLElement[] = [];
   for (let i = 0; i < nodes.length; i++) {
     const el = nodes[i];
-    if (!el.hasAttribute('disabled') && el.offsetParent !== null) {
+    if (
+      !el.hasAttribute('disabled') &&
+      el.getAttribute('aria-hidden') !== 'true' &&
+      el.offsetParent !== null
+    ) {
       result.push(el);
     }
   }
