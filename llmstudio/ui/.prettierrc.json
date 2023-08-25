@@ -39,6 +39,13 @@
       "options": {
         "singleQuote": false
       }
+    },
+    {
+      "files": ["*.html"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 120
+      }
     }
   ]
 }
