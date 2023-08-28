@@ -48,7 +48,7 @@ Don't forget to check out the [docs](https://docs.llmstudio.ai) page.
 
 ## Installation
 
-Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda`.
+Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda` or `venv` before installing.
 
 ```bash
 pip install llmstudio
@@ -66,6 +66,8 @@ Create a `.env` file at the same path you'll run **LLMstudio** from:
 OPENAI_API_KEY="sk-api_key"
 ANTHROPIC_API_KEY="sk-api_key"
 ```
+
+Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore`) to avoid leaking API keys.
 
 Now you should be able to run **LLMstudio** using the following command:
 
