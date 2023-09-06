@@ -24,7 +24,8 @@
       "files": ["*.md", "*.mdx"],
       "options": {
         "printWidth": 80,
-        "proseWrap": "always"
+        "proseWrap": "always",
+        "singleQuote": false
       }
     },
     {
@@ -35,7 +36,7 @@
       }
     },
     {
-      "files": ["*.css", "*.scss"],
+      "files": ["*.css", "*.scss", "*.less"],
       "options": {
         "singleQuote": false
       }
@@ -44,6 +45,12 @@
       "files": ["*.html"],
       "options": {
         "singleQuote": false,
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
+      "options": {
         "printWidth": 120
       }
     }
