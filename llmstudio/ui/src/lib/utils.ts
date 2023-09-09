@@ -188,3 +188,46 @@ export const getFocusableElements = (
   }
   return result;
 };
+
+/**
+ * Trap focus inside `container` until the returned function is invoked.
+ *
+ * While active, Tab and Shift+Tab cycle through the focusable descendants
+ * of `container` instead of leaving it. This is the standard pattern for
+ * modal dialogs, command palettes, and similar overlay UI.
+ *
+ * The previously-focused element is restored when the trap is released,
+ * so callers don't need to track it themselves.
+ */
+export const trapFocus = (container: HTMLElement): (() => void) => {
+  if (typeof document === 'undefined') return () => {};
+
+  const previouslyFocused = document.activeElement as HTMLElement | null;
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key !== 'Tab') return;
+    const focusable = getFocusableElements(container);
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement as HTMLElement | null;
+
+    if (event.shiftKey && active === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
+  container.addEventListener('keydown', handleKeyDown);
+
+  return () => {
+    container.removeEventListener('keydown', handleKeyDown);
+    previouslyFocused?.focus?.();
+  };
+};
