@@ -67,7 +67,7 @@ OPENAI_API_KEY="sk-api_key"
 ANTHROPIC_API_KEY="sk-api_key"
 ```
 
-Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore`) to avoid leaking API keys.
+Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore` before your first commit) to avoid leaking API keys.
 
 Now you should be able to run **LLMstudio** using the following command:
 
@@ -75,7 +75,7 @@ Now you should be able to run **LLMstudio** using the following command:
 llmstudio server --ui
 ```
 
-When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000).
+When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server.
 
 ## 🤔 About LLMstudio
 
