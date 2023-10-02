@@ -159,6 +159,12 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      outlineWidth: {
+        3: '3px',
+      },
+      outlineOffset: {
+        3: '3px',
+      },
     },
   },
   safelist: [
@@ -168,6 +174,10 @@ module.exports = {
     { pattern: buildColorPattern('ring') },
     { pattern: buildColorPattern('stroke') },
     { pattern: buildColorPattern('fill') },
+    // Ensure focus-visible accessibility utilities are always generated
+    'focus-visible:outline-none',
+    'focus-visible:ring-2',
+    'focus-visible:ring-offset-2',
   ],
   plugins: [require('tailwindcss-animate'), require('@headlessui/tailwindcss')],
 };
