@@ -7,12 +7,29 @@ This directory contains a collection of notebooks that demonstrate how to use LL
 1. [Introduction to LLMstudio](https://github.com/TensorOpsAI/LLMstudio/blob/main/examples/01_intro_to_llmstudio.ipynb) — get to know how LLMstudio works.
 2. [Compare LLM performances](https://github.com/TensorOpsAI/LLMstudio/blob/main/examples/02_llm_compare.ipynb) — compare multiple LLM performances based on the expected output, including latency and similarity.
 
+## Prerequisites
+
+- Python 3.9 or newer
+- A working Jupyter installation (`pip install notebook` if needed)
+- API keys for the providers you intend to use (e.g. OpenAI, Anthropic, VertexAI)
+
 ## Running the Examples
 
-Make sure LLMstudio is installed and that the required API keys (e.g. `OPENAI_API_KEY`) are exported in your shell before launching Jupyter:
+Make sure LLMstudio is installed and that the required API keys are exported in your shell before launching Jupyter:
 
 ```bash
 pip install llmstudio
 export OPENAI_API_KEY="your-key-here"
 jupyter notebook
 ```
+
+If you prefer to keep credentials out of your shell history, place them in a
+`.env` file at the repository root and load it with `python-dotenv` from inside
+the notebook.
+
+## Troubleshooting
+
+- **`AuthenticationError`**: double-check that the relevant `*_API_KEY`
+  environment variable is set in the same shell session used to launch Jupyter.
+- **Slow first request**: the initial call may take longer while the provider
+  client warms up; subsequent calls in the same notebook should be faster.
