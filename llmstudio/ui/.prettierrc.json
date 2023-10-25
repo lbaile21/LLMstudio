@@ -12,12 +12,21 @@
   "endOfLine": "lf",
   "quoteProps": "as-needed",
   "embeddedLanguageFormatting": "auto",
+  "singleAttributePerLine": false,
+  "htmlWhitespaceSensitivity": "css",
   "plugins": ["prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": ["*.json", "*.jsonc"],
       "options": {
         "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["package.json", "package-lock.json", "tsconfig*.json"],
+      "options": {
+        "trailingComma": "none",
+        "printWidth": 120
       }
     },
     {
@@ -52,6 +61,20 @@
       "files": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
       "options": {
         "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.config.ts", "*.config.js", "*.config.mjs", "*.config.cjs"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "all"
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "options": {
+        "printWidth": 120,
+        "semi": true
       }
     }
   ]
