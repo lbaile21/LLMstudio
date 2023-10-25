@@ -84,16 +84,20 @@ export const getErrorMessage = (error: number | undefined): string => {
 // on many animation paths.
 let reducedMotionMql: MediaQueryList | null = null;
 
+const getReducedMotionMql = (): MediaQueryList | null => {
+  if (typeof window === 'undefined' || !window.matchMedia) return null;
+  if (!reducedMotionMql) {
+    reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
+  }
+  return reducedMotionMql;
+};
+
 /**
  * Returns true if the user has requested reduced motion at the OS level.
  * Safe to call during SSR — returns false when `window` is unavailable.
  */
 export const prefersReducedMotion = (): boolean => {
-  if (typeof window === 'undefined' || !window.matchMedia) return false;
-  if (!reducedMotionMql) {
-    reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
-  }
-  return reducedMotionMql.matches;
+  return getReducedMotionMql()?.matches ?? false;
 };
 
 /**
@@ -104,18 +108,16 @@ export const prefersReducedMotion = (): boolean => {
 export const onReducedMotionChange = (
   listener: (reduced: boolean) => void
 ): (() => void) => {
-  if (typeof window === 'undefined' || !window.matchMedia) return () => {};
-  if (!reducedMotionMql) {
-    reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)');
-  }
+  const mql = getReducedMotionMql();
+  if (!mql) return () => {};
   const handler = (e: MediaQueryListEvent) => listener(e.matches);
   // Safari < 14 only supports the deprecated addListener/removeListener API.
-  if (reducedMotionMql.addEventListener) {
-    reducedMotionMql.addEventListener('change', handler);
-    return () => reducedMotionMql?.removeEventListener('change', handler);
+  if (mql.addEventListener) {
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
   }
-  reducedMotionMql.addListener(handler);
-  return () => reducedMotionMql?.removeListener(handler);
+  mql.addListener(handler);
+  return () => mql.removeListener(handler);
 };
 
 /**
@@ -146,10 +148,12 @@ export const announceToScreenReader = (
     document.body.appendChild(region);
   }
 
-  // Clear first so identical consecutive messages still get announced.
-  region.textContent = '';
+  // Capture in a local so the timeout callback isn't subject to the
+  // outer `region` being reassigned or narrowed away.
+  const target = region;
+  target.textContent = '';
   window.setTimeout(() => {
-    if (region) region.textContent = message;
+    target.textContent = message;
   }, 50);
 };
 
