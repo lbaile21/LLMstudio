@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
 
+// Tremor uses a dynamic color system; these patterns ensure the relevant
+// utility classes survive Tailwind's JIT purge step.
 const tremorColorPalette =
   'slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose';
 const tremorColorShades = '50|100|200|300|400|500|600|700|800|900|950';
@@ -168,6 +170,7 @@ module.exports = {
     },
   },
   safelist: [
+    // Dynamic Tremor color utilities (bg/text/border support interactive variants)
     { pattern: buildColorPattern('bg'), variants: ['hover', 'ui-selected'] },
     { pattern: buildColorPattern('text'), variants: ['hover', 'ui-selected'] },
     { pattern: buildColorPattern('border'), variants: ['hover', 'ui-selected'] },
