@@ -93,6 +93,14 @@ const markToastsClosed = (
     t.id === toastId || toastId === undefined ? { ...t, open: false } : t
   )
 
+const queueRemoval = (state: State, toastId?: string) => {
+  if (toastId) {
+    addToRemoveQueue(toastId)
+  } else {
+    state.toasts.forEach((toast) => addToRemoveQueue(toast.id))
+  }
+}
+
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TOAST":
@@ -110,19 +118,10 @@ export const reducer = (state: State, action: Action): State => {
       }
 
     case "DISMISS_TOAST": {
-      const { toastId } = action
-
-      if (toastId) {
-        addToRemoveQueue(toastId)
-      } else {
-        state.toasts.forEach((toast) => {
-          addToRemoveQueue(toast.id)
-        })
-      }
-
+      queueRemoval(state, action.toastId)
       return {
         ...state,
-        toasts: markToastsClosed(state.toasts, toastId),
+        toasts: markToastsClosed(state.toasts, action.toastId),
       }
     }
     case "REMOVE_TOAST":
