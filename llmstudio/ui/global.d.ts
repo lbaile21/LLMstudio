@@ -4,6 +4,10 @@ declare namespace JSX {
     }
 }
 
+/**
+ * Attributes accepted by the <dotlottie-player> custom element.
+ * See https://github.com/dotlottie/player-component for the full API.
+ */
 interface DotLottiePlayerAttributes {
     src?: string;
     autoplay?: boolean;
