@@ -76,6 +76,13 @@
         "printWidth": 120,
         "semi": true
       }
+    },
+    {
+      "files": ["*.graphql", "*.gql"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 120
+      }
     }
   ]
 }
