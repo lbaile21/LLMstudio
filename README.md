@@ -44,6 +44,7 @@ Don't forget to check out the [docs](https://docs.llmstudio.ai) page.
 ### Prerequisites
 
 - Python 3.9 or higher
+- `pip` (or another PEP 517-compatible installer such as `uv` or `poetry`)
 - (Optional) [`bun`](https://bun.sh) — required only if you plan to use the UI
 
 ## Installation
@@ -54,11 +55,19 @@ Install the latest version of **LLMstudio** using `pip`. We suggest that you cre
 pip install llmstudio
 ```
 
+To verify that the install succeeded, run:
+
+```bash
+llmstudio --version
+```
+
 Install `bun` if you want to use the UI:
 
 ```bash
 curl -fsSL https://bun.sh/install | bash
 ```
+
+### Configuring API keys
 
 Create a `.env` file at the same path you'll run **LLMstudio** from:
 
@@ -67,7 +76,9 @@ OPENAI_API_KEY="sk-api_key"
 ANTHROPIC_API_KEY="sk-api_key"
 ```
 
-Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore` before your first commit) to avoid leaking API keys.
+Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore` before your first commit) to avoid leaking API keys. Only the keys for the providers you intend to use are required.
+
+### Running the server
 
 Now you should be able to run **LLMstudio** using the following command:
 
