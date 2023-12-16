@@ -16,6 +16,10 @@
     "ui": "@/components/ui",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "types": "@/types"
+    "types": "@/types",
+    "features": "@/features",
+    "providers": "@/providers",
+    "stores": "@/stores",
+    "config": "@/config"
   }
 }
