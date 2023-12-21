@@ -27,9 +27,9 @@ memory usage, or token cost), please include the following in your PR:
   providers, and whether caching was enabled.
 
 For micro-benchmarks, prefer `pytest-benchmark` or a small standalone script
-committed under `benchmarks/`. Avoid relying on a single run — report the median
-of at least 5 runs to reduce noise, and discard the first run when measuring
-steady-state behavior (it often includes import/JIT warmup costs).
+committed under `benchmarks/`. Report the median of at least 5 runs to reduce
+noise, and discard the first run when measuring steady-state behavior (it often
+includes import/JIT warmup costs).
 
 When in doubt, err on the side of including more context: a reviewer should be
 able to reproduce your numbers without having to ask follow-up questions.
