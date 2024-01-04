@@ -25,11 +25,22 @@ jupyter notebook
 
 If you prefer to keep credentials out of your shell history, place them in a
 `.env` file at the repository root and load it with `python-dotenv` from inside
-the notebook.
+the notebook:
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
 
 ## Troubleshooting
 
 - **`AuthenticationError`**: double-check that the relevant `*_API_KEY`
   environment variable is set in the same shell session used to launch Jupyter.
+  On Windows, use `set` (cmd) or `$Env:` (PowerShell) instead of `export`.
+- **`ModuleNotFoundError: llmstudio`**: ensure you launched Jupyter from the
+  same virtual environment where `llmstudio` was installed.
 - **Slow first request**: the initial call may take longer while the provider
   client warms up; subsequent calls in the same notebook should be faster.
+- **Rate limit errors**: if you hit provider rate limits while iterating, try
+  reducing the number of parallel requests or adding a short backoff between
+  calls.
