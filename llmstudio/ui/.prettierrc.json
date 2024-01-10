@@ -103,6 +103,40 @@
       "options": {
         "printWidth": 120
       }
+    },
+    {
+      "files": ["*.svg"],
+      "options": {
+        "parser": "html",
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.env", ".env.*"],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.sh", "*.bash"],
+      "options": {
+        "printWidth": 120,
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.handlebars", "*.hbs"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["CHANGELOG.md", "HISTORY.md"],
+      "options": {
+        "proseWrap": "preserve",
+        "printWidth": 120
+      }
     }
   ]
 }
