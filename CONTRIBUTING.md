@@ -12,6 +12,24 @@ Thank you for expressing your interest in contributing to LLMstudio. To ensure t
    - Add or update tests covering your changes when applicable
    - For performance-sensitive changes, include benchmark numbers (before/after) in the PR description
 
+## Reporting Bugs
+
+When filing a bug report, please include enough context for a maintainer to
+reproduce the issue without back-and-forth:
+
+- LLMstudio version (`pip show llmstudio`) and Python version.
+- The provider and model involved, and whether the issue is reproducible with
+  a different provider/model.
+- A minimal code snippet that triggers the bug. Redact API keys and any
+  sensitive prompt content before sharing.
+- The full traceback or error message, not just the final line.
+- Observed vs. expected behavior, and how often the issue reproduces
+  (always, intermittently, only under load, etc.).
+
+If the bug only appears under concurrency or with streaming responses, please
+call that out explicitly — those code paths are easy to regress and hard to
+diagnose from a static snippet alone.
+
 ## Performance Considerations
 
 When submitting changes that may affect runtime performance (latency, throughput,
