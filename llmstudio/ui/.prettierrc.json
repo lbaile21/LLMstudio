@@ -54,7 +54,8 @@
       "files": ["*.html"],
       "options": {
         "singleQuote": false,
-        "printWidth": 120
+        "printWidth": 120,
+        "htmlWhitespaceSensitivity": "strict"
       }
     },
     {
