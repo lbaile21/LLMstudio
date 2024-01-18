@@ -20,6 +20,7 @@
     "features": "@/features",
     "providers": "@/providers",
     "stores": "@/stores",
-    "config": "@/config"
+    "config": "@/config",
+    "styles": "@/styles"
   }
 }
