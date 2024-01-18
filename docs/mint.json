@@ -70,7 +70,7 @@
     "youtube": "https://www.youtube.com/@tensorops"
   },
   "api": {
-    "baseUrl": "http://localhost:8000",
+    "baseUrl": "http://localhost:8001",
     "auth": {
       "method": "none"
     }
