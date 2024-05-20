@@ -169,6 +169,21 @@ const FOCUSABLE_SELECTOR = [
 ].join(',');
 
 /**
+ * Returns true if `el` is currently visible/focusable in the layout.
+ *
+ * Note: `offsetParent` is null for elements with `position: fixed` even
+ * when they are visible, so we additionally consult the client rects as
+ * a fallback. This avoids dropping legitimately-focusable elements
+ * inside fixed-position dialogs from the focus order.
+ */
+const isElementVisible = (el: HTMLElement): boolean => {
+  if (el.hasAttribute('disabled')) return false;
+  if (el.getAttribute('aria-hidden') === 'true') return false;
+  if (el.offsetParent !== null) return true;
+  return el.getClientRects().length > 0;
+};
+
+/**
  * Returns the focusable descendants of `container`, in DOM order.
  *
  * Uses a single `querySelectorAll` pass plus an in-place visibility filter
@@ -182,11 +197,7 @@ export const getFocusableElements = (
   const result: HTMLElement[] = [];
   for (let i = 0; i < nodes.length; i++) {
     const el = nodes[i];
-    if (
-      !el.hasAttribute('disabled') &&
-      el.getAttribute('aria-hidden') !== 'true' &&
-      el.offsetParent !== null
-    ) {
+    if (isElementVisible(el)) {
       result.push(el);
     }
   }
