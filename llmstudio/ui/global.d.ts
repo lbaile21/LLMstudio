@@ -4,6 +4,10 @@ declare namespace JSX {
     }
 }
 
+type DotLottieRenderer = "svg" | "canvas" | "html";
+type DotLottiePlayMode = "normal" | "bounce";
+type DotLottieDirection = 1 | -1;
+
 /**
  * Attributes accepted by the <dotlottie-player> custom element.
  * See https://github.com/dotlottie/player-component for the full API.
@@ -11,12 +15,16 @@ declare namespace JSX {
 interface DotLottiePlayerAttributes {
     src?: string;
     autoplay?: boolean;
-    loop?: boolean;
+    loop?: boolean | number;
     speed?: number | string;
     background?: string;
     controls?: boolean;
-    direction?: 1 | -1;
-    mode?: "normal" | "bounce";
+    direction?: DotLottieDirection;
+    mode?: DotLottiePlayMode;
+    renderer?: DotLottieRenderer;
+    intermission?: number;
+    count?: number;
+    hover?: boolean;
     style?: React.CSSProperties;
     className?: string;
     children?: React.ReactNode;
