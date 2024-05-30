@@ -32,13 +32,19 @@ from dotenv import load_dotenv
 load_dotenv()
 ```
 
+Make sure the `.env` file is listed in your `.gitignore` so secrets are not
+committed by accident.
+
 ## Troubleshooting
 
 - **`AuthenticationError`**: double-check that the relevant `*_API_KEY`
   environment variable is set in the same shell session used to launch Jupyter.
   On Windows, use `set` (cmd) or `$Env:` (PowerShell) instead of `export`.
+  Note that PowerShell uses `$Env:OPENAI_API_KEY = "your-key-here"` (no
+  `export` keyword), and the variable only persists for the current session.
 - **`ModuleNotFoundError: llmstudio`**: ensure you launched Jupyter from the
-  same virtual environment where `llmstudio` was installed.
+  same virtual environment where `llmstudio` was installed. Running
+  `which jupyter` (or `where jupyter` on Windows) can help confirm this.
 - **Slow first request**: the initial call may take longer while the provider
   client warms up; subsequent calls in the same notebook should be faster.
 - **Rate limit errors**: if you hit provider rate limits while iterating, try
