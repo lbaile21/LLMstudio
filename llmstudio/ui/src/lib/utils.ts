@@ -77,6 +77,11 @@ export const getErrorMessage = (error: number | undefined): string => {
  * announcements, reduced-motion preference detection, focus management)
  * so that UI components can rely on consistent, well-tested behavior
  * instead of reimplementing the same patterns ad-hoc.
+ *
+ * All helpers in this section are SSR-safe: they short-circuit cleanly
+ * when `window` or `document` is unavailable, returning no-op disposers
+ * where appropriate. This lets them be imported freely from components
+ * that may render on the server.
  */
 
 // Cache the reduced-motion MediaQueryList so we don't re-query on every call.
@@ -202,6 +207,23 @@ export const getFocusableElements = (
     }
   }
   return result;
+};
+
+/**
+ * Move focus to the first focusable descendant of `container`.
+ *
+ * Returns the element that received focus, or `null` if the container
+ * had no focusable children. Useful when opening a dialog or panel and
+ * you want to land the user on a sensible initial control without
+ * hard-coding a ref to it.
+ */
+export const focusFirstElement = (
+  container: HTMLElement
+): HTMLElement | null => {
+  const focusable = getFocusableElements(container);
+  const first = focusable[0] ?? null;
+  first?.focus();
+  return first;
 };
 
 /**
