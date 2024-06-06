@@ -21,6 +21,7 @@
     "providers": "@/providers",
     "stores": "@/stores",
     "config": "@/config",
-    "styles": "@/styles"
+    "styles": "@/styles",
+    "assets": "@/assets"
   }
 }
