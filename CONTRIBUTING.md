@@ -25,6 +25,7 @@ reproduce the issue without back-and-forth:
 - The full traceback or error message, not just the final line.
 - Observed vs. expected behavior, and how often the issue reproduces
   (always, intermittently, only under load, etc.).
+- The operating system and, if relevant, the shell or terminal you're using.
 
 If the bug only appears under concurrency or with streaming responses, please
 call that out explicitly — those code paths are easy to regress and hard to
