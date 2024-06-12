@@ -50,3 +50,5 @@ committed by accident.
 - **Rate limit errors**: if you hit provider rate limits while iterating, try
   reducing the number of parallel requests or adding a short backoff between
   calls.
+- **Kernel can't find new packages**: after `pip install`-ing a dependency,
+  restart the Jupyter kernel so the updated environment is picked up.
