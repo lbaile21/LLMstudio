@@ -22,6 +22,7 @@
     "stores": "@/stores",
     "config": "@/config",
     "styles": "@/styles",
-    "assets": "@/assets"
+    "assets": "@/assets",
+    "icons": "@/components/icons"
   }
 }
