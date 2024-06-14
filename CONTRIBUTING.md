@@ -50,6 +50,24 @@ committed under `benchmarks/`. Report the median of at least 5 runs to reduce
 noise, and discard the first run when measuring steady-state behavior (it often
 includes import/JIT warmup costs).
 
+### Avoiding common pitfalls
+
+A few mistakes show up often enough in performance PRs that they're worth
+calling out explicitly:
+
+- **Benchmarking against a live provider without isolating network noise.**
+  If you must hit a remote API, run the benchmark multiple times across
+  different times of day, or mock the transport layer for the hot path you
+  actually care about.
+- **Comparing a warm cache against a cold one.** Either flush caches between
+  runs, or report both warm and cold numbers separately.
+- **Measuring wall-clock time on a busy machine.** Close other workloads, or
+  use `time.perf_counter()` inside a tight loop and report CPU time alongside
+  wall time when the distinction matters.
+- **Optimizing a code path that isn't on the critical path.** Profile first
+  (`cProfile`, `py-spy`, or `scalene`) and include a short note in the PR
+  describing which function dominated before your change.
+
 When in doubt, err on the side of including more context: a reviewer should be
 able to reproduce your numbers without having to ask follow-up questions.
 
