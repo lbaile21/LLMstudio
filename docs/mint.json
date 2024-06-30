@@ -29,6 +29,10 @@
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
     }
   ],
   "anchors": [
@@ -41,12 +45,25 @@
       "name": "GitHub",
       "icon": "github",
       "url": "https://github.com/tensoropsai/llmstudio"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://tensorops.ai/blog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": ["quickstart", "support"]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/performance",
+        "guides/caching",
+        "guides/streaming"
+      ]
     },
     {
       "group": "Endpoint Examples",
@@ -74,5 +91,9 @@
     "auth": {
       "method": "none"
     }
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
   }
 }
