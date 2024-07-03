@@ -1,7 +1,7 @@
 /** @type {import('postcss-load-config').Config} */
 const isProduction = process.env.NODE_ENV === 'production';
 
-const plugins = {
+const basePlugins = {
   'postcss-import': {},
   'tailwindcss/nesting': {},
   tailwindcss: {},
@@ -10,8 +10,8 @@ const plugins = {
   },
 };
 
-if (isProduction) {
-  plugins.cssnano = {
+const productionPlugins = {
+  cssnano: {
     preset: [
       'default',
       {
@@ -19,7 +19,11 @@ if (isProduction) {
         normalizeWhitespace: true,
       },
     ],
-  };
-}
+  },
+};
+
+const plugins = isProduction
+  ? { ...basePlugins, ...productionPlugins }
+  : basePlugins;
 
 module.exports = { plugins };
