@@ -227,6 +227,22 @@ export const focusFirstElement = (
 };
 
 /**
+ * Move focus to the last focusable descendant of `container`.
+ *
+ * Mirrors {@link focusFirstElement} for cases where the natural landing
+ * point is at the end of the container (e.g. revealing a newly-appended
+ * row and focusing its trailing action button).
+ */
+export const focusLastElement = (
+  container: HTMLElement
+): HTMLElement | null => {
+  const focusable = getFocusableElements(container);
+  const last = focusable[focusable.length - 1] ?? null;
+  last?.focus();
+  return last;
+};
+
+/**
  * Trap focus inside `container` until the returned function is invoked.
  *
  * While active, Tab and Shift+Tab cycle through the focusable descendants
