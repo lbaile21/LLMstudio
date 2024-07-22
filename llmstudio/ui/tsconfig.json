@@ -46,6 +46,12 @@
       ],
       "@lib/*": [
         "./src/lib/*"
+      ],
+      "@types/*": [
+        "./src/types/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
       ]
     }
   },
@@ -63,9 +69,12 @@
     "build",
     "dist",
     "coverage",
+    "out",
+    "storybook-static",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",
-    "**/*.spec.tsx"
+    "**/*.spec.tsx",
+    "**/__mocks__/**"
   ]
 }
