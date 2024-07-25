@@ -151,15 +151,21 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
+function createToastHandle(id: string) {
+  return {
+    id,
+    dismiss: () => dispatch({ type: "DISMISS_TOAST", toastId: id }),
+    update: (props: Partial<ToasterToast>) =>
+      dispatch({
+        type: "UPDATE_TOAST",
+        toast: { ...props, id },
+      }),
+  }
+}
+
 function toast({ ...props }: Toast) {
   const id = genId()
-
-  const update = (props: ToasterToast) =>
-    dispatch({
-      type: "UPDATE_TOAST",
-      toast: { ...props, id },
-    })
-  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
+  const handle = createToastHandle(id)
 
   dispatch({
     type: "ADD_TOAST",
@@ -168,16 +174,24 @@ function toast({ ...props }: Toast) {
       id,
       open: true,
       onOpenChange: (open) => {
-        if (!open) dismiss()
+        if (!open) handle.dismiss()
       },
     },
   })
 
-  return {
-    id: id,
-    dismiss,
-    update,
-  }
+  return handle
+}
+
+/**
+ * Convenience helper for emitting an error-style toast with a sensible
+ * default title when none is supplied by the caller.
+ */
+function toastError(props: Omit<Toast, "variant">) {
+  return toast({
+    title: "Something went wrong",
+    ...props,
+    variant: "destructive" as ToastProps["variant"],
+  })
 }
 
 function useToast() {
@@ -196,8 +210,9 @@ function useToast() {
   return {
     ...state,
     toast,
+    toastError,
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   }
 }
 
-export { useToast, toast, clearRemoveQueue }
+export { useToast, toast, toastError, clearRemoveQueue }
