@@ -67,6 +67,8 @@ calling out explicitly:
 - **Optimizing a code path that isn't on the critical path.** Profile first
   (`cProfile`, `py-spy`, or `scalene`) and include a short note in the PR
   describing which function dominated before your change.
+- **Reporting a single run.** One number is an anecdote, not a measurement.
+  Always include at least the median and, ideally, a spread (min/max or stddev).
 
 When in doubt, err on the side of including more context: a reviewer should be
 able to reproduce your numbers without having to ask follow-up questions.
