@@ -44,7 +44,7 @@
       }
     },
     {
-      "files": ["CHANGELOG.md", "HISTORY.md"],
+      "files": ["CHANGELOG.md", "HISTORY.md", "RELEASES.md"],
       "options": {
         "proseWrap": "preserve",
         "printWidth": 120
