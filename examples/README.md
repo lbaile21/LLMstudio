@@ -40,8 +40,8 @@ committed by accident.
 - **`AuthenticationError`**: double-check that the relevant `*_API_KEY`
   environment variable is set in the same shell session used to launch Jupyter.
   On Windows, use `set` (cmd) or `$Env:` (PowerShell) instead of `export`.
-  Note that PowerShell uses `$Env:OPENAI_API_KEY = "your-key-here"` (no
-  `export` keyword), and the variable only persists for the current session.
+  In PowerShell, set the variable with `$Env:OPENAI_API_KEY = "your-key-here"`
+  (no `export` keyword); note that it only persists for the current session.
 - **`ModuleNotFoundError: llmstudio`**: ensure you launched Jupyter from the
   same virtual environment where `llmstudio` was installed. Running
   `which jupyter` (or `where jupyter` on Windows) can help confirm this.
