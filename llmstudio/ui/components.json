@@ -12,17 +12,17 @@
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
     "ui": "@/components/ui",
-    "hooks": "@/hooks",
-    "lib": "@/lib",
-    "types": "@/types",
+    "icons": "@/components/icons",
     "features": "@/features",
+    "hooks": "@/hooks",
     "providers": "@/providers",
     "stores": "@/stores",
+    "lib": "@/lib",
+    "utils": "@/lib/utils",
+    "types": "@/types",
     "config": "@/config",
     "styles": "@/styles",
-    "assets": "@/assets",
-    "icons": "@/components/icons"
+    "assets": "@/assets"
   }
 }
