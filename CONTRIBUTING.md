@@ -31,6 +31,22 @@ If the bug only appears under concurrency or with streaming responses, please
 call that out explicitly — those code paths are easy to regress and hard to
 diagnose from a static snippet alone.
 
+## Testing
+
+Before opening a PR, run the test suite locally and make sure it passes:
+
+- `pytest` runs the full suite. For faster iteration, scope to a single module
+  with `pytest tests/path/to/test_file.py` or a single test with `-k name`.
+- Use `pytest -x` to stop at the first failure when debugging, and `-vv` for
+  verbose assertion output.
+- New code should ship with tests. Aim to cover both the happy path and at
+  least one error/edge case (invalid input, provider error, empty response,
+  etc.). Bug fixes should include a regression test that fails without the fix.
+- Mock external providers in unit tests; reserve real network calls for
+  integration tests that are clearly marked and skippable in CI.
+- If your change touches streaming or async code, add a test that exercises
+  the streaming path end-to-end — these regressions are otherwise easy to miss.
+
 ## Performance Considerations
 
 When submitting changes that may affect runtime performance (latency, throughput,
