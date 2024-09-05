@@ -171,9 +171,9 @@ module.exports = {
   },
   safelist: [
     // Dynamic Tremor color utilities (bg/text/border support interactive variants)
-    { pattern: buildColorPattern('bg'), variants: ['hover', 'ui-selected'] },
-    { pattern: buildColorPattern('text'), variants: ['hover', 'ui-selected'] },
-    { pattern: buildColorPattern('border'), variants: ['hover', 'ui-selected'] },
+    { pattern: buildColorPattern('bg'), variants: ['hover', 'focus', 'ui-selected'] },
+    { pattern: buildColorPattern('text'), variants: ['hover', 'focus', 'ui-selected'] },
+    { pattern: buildColorPattern('border'), variants: ['hover', 'focus', 'ui-selected'] },
     { pattern: buildColorPattern('ring') },
     { pattern: buildColorPattern('stroke') },
     { pattern: buildColorPattern('fill') },
