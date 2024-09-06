@@ -49,7 +49,7 @@ Don't forget to check out the [docs](https://docs.llmstudio.ai) page.
 
 ## Installation
 
-Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda` or `venv` before installing.
+Install the latest version of **LLMstudio** using `pip`. We suggest that you create and activate a new environment using `conda` or `venv` before installing, to avoid dependency conflicts with other projects.
 
 ```bash
 pip install llmstudio
@@ -76,7 +76,16 @@ OPENAI_API_KEY="sk-api_key"
 ANTHROPIC_API_KEY="sk-api_key"
 ```
 
-Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore` before your first commit) to avoid leaking API keys. Only the keys for the providers you intend to use are required.
+Make sure the `.env` file is not committed to source control (e.g. add it to `.gitignore` *before* your first commit) to avoid leaking API keys. Only the keys for the providers you intend to use are required — LLMstudio will surface a clear error at call time if a key for a requested provider is missing, rather than failing silently.
+
+If you prefer not to use a `.env` file, you can also export the keys directly in your shell:
+
+```bash
+export OPENAI_API_KEY="sk-api_key"
+export ANTHROPIC_API_KEY="sk-api_key"
+```
+
+Environment variables set this way take precedence over values in `.env`.
 
 ### Running the server
 
@@ -86,7 +95,7 @@ Now you should be able to run **LLMstudio** using the following command:
 llmstudio server --ui
 ```
 
-When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server.
+When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server (on Linux/macOS, `lsof -i :3000` will show which process is holding the port).
 
 ## 🤔 About LLMstudio
 
