@@ -24,7 +24,8 @@
   ],
   "topbarCtaButton": {
     "name": "TensorOps",
-    "url": "https://tensorops.ai"
+    "url": "https://tensorops.ai",
+    "ariaLabel": "Visit the TensorOps website"
   },
   "tabs": [
     {
@@ -40,17 +41,20 @@
     {
       "name": "Community",
       "icon": "discord",
-      "url": "https://discord.gg/GkAfPZR9wy"
+      "url": "https://discord.gg/GkAfPZR9wy",
+      "ariaLabel": "Join the LLMstudio Discord community"
     },
     {
       "name": "GitHub",
       "icon": "github",
-      "url": "https://github.com/tensoropsai/llmstudio"
+      "url": "https://github.com/tensoropsai/llmstudio",
+      "ariaLabel": "View LLMstudio source code on GitHub"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://tensorops.ai/blog"
+      "url": "https://tensorops.ai/blog",
+      "ariaLabel": "Read the TensorOps blog"
     }
   ],
   "navigation": [
