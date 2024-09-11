@@ -23,6 +23,7 @@
     "types": "@/types",
     "config": "@/config",
     "styles": "@/styles",
-    "assets": "@/assets"
+    "assets": "@/assets",
+    "server": "@/server"
   }
 }
