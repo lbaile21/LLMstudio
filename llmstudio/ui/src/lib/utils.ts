@@ -125,6 +125,11 @@ export const onReducedMotionChange = (
   return () => mql.removeListener(handler);
 };
 
+// Tracks the pending announcement timer per live-region priority so that
+// rapid successive calls don't race: a newer message must always replace
+// (not be replaced by) an older one still waiting to be written.
+const pendingAnnouncements = new Map<string, ReturnType<typeof setTimeout>>();
+
 /**
  * Announce a message to assistive technologies via an ARIA live region.
  * Creates (and reuses) a visually-hidden container appended to <body>.
@@ -153,13 +158,22 @@ export const announceToScreenReader = (
     document.body.appendChild(region);
   }
 
+  // Cancel any in-flight announcement for this priority so the latest
+  // message wins instead of being clobbered by a stale timer.
+  const existingTimer = pendingAnnouncements.get(id);
+  if (existingTimer !== undefined) {
+    clearTimeout(existingTimer);
+  }
+
   // Capture in a local so the timeout callback isn't subject to the
   // outer `region` being reassigned or narrowed away.
   const target = region;
   target.textContent = '';
-  window.setTimeout(() => {
+  const timer = window.setTimeout(() => {
     target.textContent = message;
+    pendingAnnouncements.delete(id);
   }, 50);
+  pendingAnnouncements.set(id, timer);
 };
 
 /** CSS selector matching elements that are typically focusable. */
