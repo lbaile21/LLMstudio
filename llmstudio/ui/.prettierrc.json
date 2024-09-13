@@ -125,6 +125,12 @@
         "singleQuote": false,
         "printWidth": 120
       }
+    },
+    {
+      "files": ["Dockerfile", "Dockerfile.*", "*.dockerfile"],
+      "options": {
+        "printWidth": 120
+      }
     }
   ]
 }
