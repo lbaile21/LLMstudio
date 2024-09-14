@@ -85,7 +85,7 @@ export OPENAI_API_KEY="sk-api_key"
 export ANTHROPIC_API_KEY="sk-api_key"
 ```
 
-Environment variables set this way take precedence over values in `.env`.
+Environment variables set this way take precedence over values in `.env`. Note that quoting the value (as shown above) is recommended to prevent the shell from interpreting special characters in the key.
 
 ### Running the server
 
