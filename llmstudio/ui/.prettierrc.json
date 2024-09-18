@@ -58,6 +58,13 @@
       }
     },
     {
+      "files": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 120
+      }
+    },
+    {
       "files": ["*.css", "*.scss", "*.less"],
       "options": {
         "singleQuote": false
@@ -130,6 +137,13 @@
       "files": ["Dockerfile", "Dockerfile.*", "*.dockerfile"],
       "options": {
         "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.prisma"],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 2
       }
     }
   ]
