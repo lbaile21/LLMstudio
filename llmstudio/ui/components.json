@@ -24,6 +24,7 @@
     "config": "@/config",
     "styles": "@/styles",
     "assets": "@/assets",
-    "server": "@/server"
+    "server": "@/server",
+    "a11y": "@/lib/a11y"
   }
 }
