@@ -95,6 +95,9 @@
     "baseUrl": "http://localhost:8001",
     "auth": {
       "method": "none"
+    },
+    "playground": {
+      "mode": "show"
     }
   },
   "feedback": {
