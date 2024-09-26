@@ -176,6 +176,22 @@ export const announceToScreenReader = (
   pendingAnnouncements.set(id, timer);
 };
 
+/**
+ * Clear any live-region content and cancel pending announcements.
+ *
+ * Useful when navigating away from a view so that stale status messages
+ * are not read out after the context that produced them is gone.
+ */
+export const clearScreenReaderAnnouncements = (): void => {
+  if (typeof document === 'undefined') return;
+  for (const [id, timer] of pendingAnnouncements) {
+    clearTimeout(timer);
+    const region = document.getElementById(id);
+    if (region) region.textContent = '';
+  }
+  pendingAnnouncements.clear();
+};
+
 /** CSS selector matching elements that are typically focusable. */
 const FOCUSABLE_SELECTOR = [
   'a[href]',
