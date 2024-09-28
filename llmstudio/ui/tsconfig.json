@@ -11,12 +11,15 @@
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
+    "noImplicitThis": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -28,6 +31,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
@@ -52,6 +56,9 @@
       ],
       "@styles/*": [
         "./src/styles/*"
+      ],
+      "@test/*": [
+        "./src/test/*"
       ]
     }
   },
@@ -71,10 +78,15 @@
     "coverage",
     "out",
     "storybook-static",
+    "playwright-report",
+    "test-results",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",
     "**/*.spec.tsx",
-    "**/__mocks__/**"
+    "**/*.e2e.ts",
+    "**/*.stories.tsx",
+    "**/__mocks__/**",
+    "**/__tests__/**"
   ]
 }
