@@ -59,6 +59,9 @@
       ],
       "@test/*": [
         "./src/test/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
       ]
     }
   },
