@@ -95,7 +95,7 @@ Now you should be able to run **LLMstudio** using the following command:
 llmstudio server --ui
 ```
 
-When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server (on Linux/macOS, `lsof -i :3000` will show which process is holding the port).
+When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server (on Linux/macOS, `lsof -i :3000` will show which process is holding the port; on Windows, use `netstat -ano | findstr :3000`).
 
 ## 🤔 About LLMstudio
 
