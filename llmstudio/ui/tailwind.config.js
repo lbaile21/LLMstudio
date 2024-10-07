@@ -9,6 +9,12 @@ const tremorColorShades = '50|100|200|300|400|500|600|700|800|900|950';
 const buildColorPattern = (prefix) =>
   new RegExp(`^(${prefix}-(?:${tremorColorPalette})-(?:${tremorColorShades}))$`);
 
+const interactiveVariants = ['hover', 'focus', 'ui-selected'];
+const interactiveColorPattern = (prefix) => ({
+  pattern: buildColorPattern(prefix),
+  variants: interactiveVariants,
+});
+
 module.exports = {
   darkMode: ['class'],
   content: [
@@ -171,9 +177,9 @@ module.exports = {
   },
   safelist: [
     // Dynamic Tremor color utilities (bg/text/border support interactive variants)
-    { pattern: buildColorPattern('bg'), variants: ['hover', 'focus', 'ui-selected'] },
-    { pattern: buildColorPattern('text'), variants: ['hover', 'focus', 'ui-selected'] },
-    { pattern: buildColorPattern('border'), variants: ['hover', 'focus', 'ui-selected'] },
+    interactiveColorPattern('bg'),
+    interactiveColorPattern('text'),
+    interactiveColorPattern('border'),
     { pattern: buildColorPattern('ring') },
     { pattern: buildColorPattern('stroke') },
     { pattern: buildColorPattern('fill') },
