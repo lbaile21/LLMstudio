@@ -42,6 +42,8 @@ committed by accident.
   On Windows, use `set` (cmd) or `$Env:` (PowerShell) instead of `export`.
   In PowerShell, set the variable with `$Env:OPENAI_API_KEY = "your-key-here"`
   (no `export` keyword); note that it only persists for the current session.
+  Be aware that quoting the value with single quotes in PowerShell will
+  include the quotes as part of the key, which will then fail authentication.
 - **`ModuleNotFoundError: llmstudio`**: ensure you launched Jupyter from the
   same virtual environment where `llmstudio` was installed. Running
   `which jupyter` (or `where jupyter` on Windows) can help confirm this.
@@ -52,3 +54,10 @@ committed by accident.
   calls.
 - **Kernel can't find new packages**: after `pip install`-ing a dependency,
   restart the Jupyter kernel so the updated environment is picked up.
+- **Stale API key after rotation**: if you rotated a key but still see auth
+  errors, confirm the new value is exported in the current shell and restart
+  the Jupyter kernel — notebooks cache `os.environ` values read at import time.
+- **Trailing whitespace in keys**: keys copied from web dashboards sometimes
+  include a trailing newline or space. Strip the value (e.g. with
+  `OPENAI_API_KEY=$(echo -n "$OPENAI_API_KEY" | tr -d '[:space:]')`) before
+  exporting it to avoid hard-to-debug 401 responses.
