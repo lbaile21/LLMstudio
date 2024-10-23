@@ -46,28 +46,24 @@ export async function* getIterableStream(
   }
 }
 
+// Mapping of HTTP-ish status codes to user-facing error copy. Kept as a
+// module-level constant so the table is allocated once rather than on every
+// `getErrorMessage` call, and so new codes can be added without growing the
+// switch statement.
+const ERROR_MESSAGES: Record<number, string> = {
+  400: "Oops! That's not a valid request.",
+  401: 'Invalid API key. Please verify and try again.',
+  403: 'Access denied. Check API key permissions.',
+  404: 'Resource unavailable. Check the request and retry.',
+  429: 'Usage limit exceeded. Try again later.',
+  500: 'Unexpected server issue. Please try again later.',
+  503: 'Service is temporarily busy. Please retry later.',
+  529: 'Service is temporarily busy. Please retry later.',
+};
+
 export const getErrorMessage = (error: number | undefined): string => {
-  switch (error) {
-    case 400:
-      return "Oops! That's not a valid request.";
-    case 401:
-      return 'Invalid API key. Please verify and try again.';
-    case 403:
-      return 'Access denied. Check API key permissions.';
-    case 404:
-      return 'Resource unavailable. Check the request and retry.';
-    case 429:
-      return 'Usage limit exceeded. Try again later.';
-    case 500:
-      return 'Unexpected server issue. Please try again later.';
-    case 503:
-    case 529:
-      return 'Service is temporarily busy. Please retry later.';
-    case undefined:
-      return 'LLMstudio Engine is not running';
-    default:
-      return 'Unknown error';
-  }
+  if (error === undefined) return 'LLMstudio Engine is not running';
+  return ERROR_MESSAGES[error] ?? 'Unknown error';
 };
 
 /**
@@ -240,6 +236,23 @@ export const getFocusableElements = (
 };
 
 /**
+ * Internal helper: focus an element at a specific index in the focus order,
+ * supporting negative indices (Python-style) so that `-1` means "last".
+ * Returns the focused element, or null if the container is empty.
+ */
+const focusAt = (
+  container: HTMLElement,
+  index: number
+): HTMLElement | null => {
+  const focusable = getFocusableElements(container);
+  if (focusable.length === 0) return null;
+  const resolved = index < 0 ? focusable.length + index : index;
+  const target = focusable[resolved] ?? null;
+  target?.focus();
+  return target;
+};
+
+/**
  * Move focus to the first focusable descendant of `container`.
  *
  * Returns the element that received focus, or `null` if the container
@@ -249,12 +262,7 @@ export const getFocusableElements = (
  */
 export const focusFirstElement = (
   container: HTMLElement
-): HTMLElement | null => {
-  const focusable = getFocusableElements(container);
-  const first = focusable[0] ?? null;
-  first?.focus();
-  return first;
-};
+): HTMLElement | null => focusAt(container, 0);
 
 /**
  * Move focus to the last focusable descendant of `container`.
@@ -265,12 +273,7 @@ export const focusFirstElement = (
  */
 export const focusLastElement = (
   container: HTMLElement
-): HTMLElement | null => {
-  const focusable = getFocusableElements(container);
-  const last = focusable[focusable.length - 1] ?? null;
-  last?.focus();
-  return last;
-};
+): HTMLElement | null => focusAt(container, -1);
 
 /**
  * Trap focus inside `container` until the returned function is invoked.
