@@ -51,6 +51,15 @@
       }
     },
     {
+      "files": ["README.md", "CONTRIBUTING.md", "docs/**/*.md", "docs/**/*.mdx"],
+      "options": {
+        "printWidth": 80,
+        "proseWrap": "always",
+        "singleQuote": false,
+        "tabWidth": 2
+      }
+    },
+    {
       "files": ["*.yml", "*.yaml"],
       "options": {
         "singleQuote": false,
@@ -59,6 +68,13 @@
     },
     {
       "files": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
+      "options": {
+        "singleQuote": false,
+        "printWidth": 120
+      }
+    },
+    {
+      "files": ["docker-compose*.yml", "docker-compose*.yaml"],
       "options": {
         "singleQuote": false,
         "printWidth": 120
@@ -142,6 +158,14 @@
     {
       "files": ["*.prisma"],
       "options": {
+        "printWidth": 120,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.sql"],
+      "options": {
+        "singleQuote": false,
         "printWidth": 120,
         "tabWidth": 2
       }
