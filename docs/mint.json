@@ -103,5 +103,8 @@
   "feedback": {
     "thumbsRating": true,
     "suggestEdit": true
+  },
+  "seo": {
+    "indexHiddenPages": false
   }
 }
