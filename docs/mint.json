@@ -67,7 +67,8 @@
       "pages": [
         "guides/performance",
         "guides/caching",
-        "guides/streaming"
+        "guides/streaming",
+        "guides/error-handling"
       ]
     },
     {
@@ -98,13 +99,22 @@
     },
     "playground": {
       "mode": "show"
+    },
+    "request": {
+      "example": {
+        "languages": ["curl", "python", "javascript"]
+      }
     }
   },
   "feedback": {
     "thumbsRating": true,
-    "suggestEdit": true
+    "suggestEdit": true,
+    "raiseIssue": true
   },
   "seo": {
     "indexHiddenPages": false
+  },
+  "search": {
+    "prompt": "Search the LLMstudio docs..."
   }
 }
