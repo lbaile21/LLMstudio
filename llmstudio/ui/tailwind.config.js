@@ -2,9 +2,14 @@
 const colors = require('tailwindcss/colors');
 
 // Tremor uses a dynamic color system; these patterns ensure the relevant
-// utility classes survive Tailwind's JIT purge step.
-const tremorColorPalette =
-  'slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose';
+// utility classes survive Tailwind's JIT purge step. Keeping the palette and
+// shade lists as arrays (joined once) makes them easier to extend later.
+const tremorColorPalette = [
+  'slate', 'gray', 'zinc', 'neutral', 'stone',
+  'red', 'orange', 'amber', 'yellow', 'lime',
+  'green', 'emerald', 'teal', 'cyan', 'sky',
+  'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose',
+].join('|');
 const tremorColorShades = '50|100|200|300|400|500|600|700|800|900|950';
 const buildColorPattern = (prefix) =>
   new RegExp(`^(${prefix}-(?:${tremorColorPalette})-(?:${tremorColorShades}))$`);
