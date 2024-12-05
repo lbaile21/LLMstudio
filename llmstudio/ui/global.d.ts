@@ -33,4 +33,5 @@ interface DotLottiePlayerAttributes {
     "aria-describedby"?: string;
     "aria-hidden"?: boolean | "true" | "false";
     role?: string;
+    id?: string;
 }
