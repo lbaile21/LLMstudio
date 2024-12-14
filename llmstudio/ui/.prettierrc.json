@@ -169,6 +169,13 @@
         "printWidth": 120,
         "tabWidth": 2
       }
+    },
+    {
+      "files": ["*.ipynb"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "none"
+      }
     }
   ]
 }
