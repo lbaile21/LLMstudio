@@ -67,6 +67,8 @@ Install `bun` if you want to use the UI:
 curl -fsSL https://bun.sh/install | bash
 ```
 
+After installation, confirm `bun` is on your `PATH` with `bun --version`. You may need to restart your shell (or `source ~/.bashrc` / `~/.zshrc`) for the change to take effect.
+
 ### Configuring API keys
 
 Create a `.env` file at the same path you'll run **LLMstudio** from:
@@ -96,6 +98,8 @@ llmstudio server --ui
 ```
 
 When the `--ui` flag is set, you'll be able to access the UI at [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, stop the conflicting process before starting the server (on Linux/macOS, `lsof -i :3000` will show which process is holding the port; on Windows, use `netstat -ano | findstr :3000`).
+
+Omit the `--ui` flag to run the gateway in headless mode, which is useful for server deployments or when you only need the Python client.
 
 ## 🤔 About LLMstudio
 
