@@ -143,7 +143,7 @@
       }
     },
     {
-      "files": ["*.env", ".env.*", "*.sh", "*.bash"],
+      "files": ["*.sh", "*.bash"],
       "options": {
         "singleQuote": false,
         "printWidth": 120
@@ -175,6 +175,13 @@
       "options": {
         "printWidth": 120,
         "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.astro", "*.vue", "*.svelte"],
+      "options": {
+        "printWidth": 100,
+        "singleQuote": true
       }
     }
   ]
