@@ -25,6 +25,21 @@
     "styles": "@/styles",
     "assets": "@/assets",
     "server": "@/server",
-    "a11y": "@/lib/a11y"
+    "a11y": "@/lib/a11y",
+    "api": "@/lib/api",
+    "auth": "@/lib/auth",
+    "db": "@/lib/db",
+    "schemas": "@/lib/schemas",
+    "validators": "@/lib/validators",
+    "constants": "@/lib/constants",
+    "i18n": "@/lib/i18n",
+    "telemetry": "@/lib/telemetry",
+    "feature-flags": "@/lib/feature-flags",
+    "layouts": "@/components/layouts",
+    "forms": "@/components/forms",
+    "charts": "@/components/charts",
+    "tests": "@/tests",
+    "mocks": "@/tests/mocks",
+    "fixtures": "@/tests/fixtures"
   }
 }
