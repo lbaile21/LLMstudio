@@ -78,8 +78,8 @@
           "group": "LLM",
           "icon": "sparkles",
           "pages": [
-            "api-reference/llm/list-models",
             "api-reference/llm/list-providers",
+            "api-reference/llm/list-models",
             "api-reference/llm/chat"
           ]
         }
