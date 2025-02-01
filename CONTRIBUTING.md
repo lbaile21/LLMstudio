@@ -91,6 +91,7 @@ able to reproduce your numbers without having to ask follow-up questions.
 
 ## Branches
 
-- All development happens in per-feature branches prefixed by contributor's
-  initials. For example `feat/feature_name`.
-- Approved PRs are merged to the `main` branch.
+- All development happens in per-feature branches prefixed with the change
+  type and contributor's initials, e.g. `feat/ab_feature_name` or
+  `fix/ab_bug_description`.
+- Approved PRs are merged to the `main` branch via squash-merge.
