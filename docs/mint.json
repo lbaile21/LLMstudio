@@ -115,6 +115,6 @@
     "indexHiddenPages": false
   },
   "search": {
-    "prompt": "Search the LLMstudio docs..."
+    "prompt": "Search the LLMstudio docs (performance, caching, streaming)..."
   }
 }
