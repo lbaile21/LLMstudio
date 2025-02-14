@@ -35,6 +35,21 @@ load_dotenv()
 Make sure the `.env` file is listed in your `.gitignore` so secrets are not
 committed by accident.
 
+## Verifying Your Setup
+
+Before running the example notebooks, you can quickly confirm that LLMstudio
+is installed and your API key is reachable from Python:
+
+```python
+import os
+import llmstudio
+
+assert os.environ.get("OPENAI_API_KEY"), "OPENAI_API_KEY is not set"
+print("llmstudio version:", getattr(llmstudio, "__version__", "unknown"))
+```
+
+If this snippet runs without errors, you are ready to open the notebooks.
+
 ## Troubleshooting
 
 - **`AuthenticationError`**: double-check that the relevant `*_API_KEY`
