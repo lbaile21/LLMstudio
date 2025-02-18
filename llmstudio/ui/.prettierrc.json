@@ -143,7 +143,7 @@
       }
     },
     {
-      "files": ["*.sh", "*.bash"],
+      "files": ["*.sh", "*.bash", "*.zsh"],
       "options": {
         "singleQuote": false,
         "printWidth": 120
@@ -182,6 +182,40 @@
       "options": {
         "printWidth": 100,
         "singleQuote": true
+      }
+    },
+    {
+      "files": ["*.env", ".env", ".env.*"],
+      "options": {
+        "printWidth": 120,
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["LICENSE", "NOTICE", "AUTHORS", "CODEOWNERS"],
+      "options": {
+        "printWidth": 120,
+        "proseWrap": "preserve"
+      }
+    },
+    {
+      "files": ["*.lock", "yarn.lock", "pnpm-lock.yaml", "bun.lockb"],
+      "options": {
+        "requirePragma": true
+      }
+    },
+    {
+      "files": ["src/**/*.ts", "src/**/*.tsx"],
+      "options": {
+        "printWidth": 100,
+        "trailingComma": "all"
+      }
+    },
+    {
+      "files": ["scripts/**/*.ts", "scripts/**/*.js", "scripts/**/*.mjs"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "all"
       }
     }
   ]
