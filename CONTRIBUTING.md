@@ -47,6 +47,21 @@ Before opening a PR, run the test suite locally and make sure it passes:
 - If your change touches streaming or async code, add a test that exercises
   the streaming path end-to-end — these regressions are otherwise easy to miss.
 
+## Pull Request Checklist
+
+Before requesting review, confirm that your PR:
+
+- Has a descriptive title and a summary that explains the *why*, not just the
+  *what*. Link any related issues with `Closes #123` or `Refs #123`.
+- Keeps the change focused. Unrelated refactors, formatting churn, and
+  dependency bumps belong in separate PRs so they can be reviewed and
+  reverted independently.
+- Updates user-facing documentation (README, `docs/`, docstrings) when
+  behavior, configuration, or public APIs change.
+- Passes `pre-commit run --all-files` and `pytest` locally.
+- Notes any breaking changes prominently in the PR description, along with a
+  suggested migration path for existing users.
+
 ## Performance Considerations
 
 When submitting changes that may affect runtime performance (latency, throughput,
