@@ -60,6 +60,15 @@
       }
     },
     {
+      "files": ["ACCESSIBILITY.md", "a11y/**/*.md", "docs/a11y/**/*.md", "docs/a11y/**/*.mdx"],
+      "options": {
+        "printWidth": 80,
+        "proseWrap": "always",
+        "singleQuote": false,
+        "tabWidth": 2
+      }
+    },
+    {
       "files": ["*.yml", "*.yaml"],
       "options": {
         "singleQuote": false,
