@@ -38,6 +38,7 @@
     "layouts": "@/components/layouts",
     "forms": "@/components/forms",
     "charts": "@/components/charts",
+    "perf": "@/lib/perf",
     "tests": "@/tests",
     "mocks": "@/tests/mocks",
     "fixtures": "@/tests/fixtures"
