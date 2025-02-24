@@ -11,15 +11,29 @@
     "primary": "#0D9373",
     "light": "#07C983",
     "dark": "#0D9373",
+    "background": {
+      "dark": "#0B1120",
+      "light": "#FFFFFF"
+    },
     "anchors": {
       "from": "#0D9373",
       "to": "#07C983"
     }
   },
+  "metadata": {
+    "og:title": "LLMstudio Documentation",
+    "og:description": "Build, evaluate, and ship reliable LLM apps with LLMstudio.",
+    "og:site_name": "LLMstudio Docs",
+    "twitter:site": "@tensoropsai"
+  },
   "topbarLinks": [
     {
       "name": "Support",
       "url": "mailto:claudio@tensorops.ai?subject=LLMstudio%20support"
+    },
+    {
+      "name": "Changelog",
+      "url": "https://github.com/tensoropsai/llmstudio/releases"
     }
   ],
   "topbarCtaButton": {
@@ -102,7 +116,7 @@
     },
     "request": {
       "example": {
-        "languages": ["curl", "python", "javascript"]
+        "languages": ["curl", "python", "javascript", "go"]
       }
     }
   },
@@ -116,5 +130,15 @@
   },
   "search": {
     "prompt": "Search the LLMstudio docs (providers, models, chat)..."
-  }
+  },
+  "redirects": [
+    {
+      "source": "/docs/quickstart",
+      "destination": "/quickstart"
+    },
+    {
+      "source": "/api",
+      "destination": "/api-reference/llm/chat"
+    }
+  ]
 }
