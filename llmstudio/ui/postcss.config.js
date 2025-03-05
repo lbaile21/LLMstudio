@@ -1,6 +1,7 @@
 /** @type {import('postcss-load-config').Config} */
-const isProduction = process.env.NODE_ENV === 'production';
-const isTest = process.env.NODE_ENV === 'test';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const isProduction = NODE_ENV === 'production';
+const isTest = NODE_ENV === 'test';
 
 /**
  * Base PostCSS plugins applied in every environment.
