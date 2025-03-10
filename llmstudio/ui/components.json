@@ -41,6 +41,23 @@
     "perf": "@/lib/perf",
     "tests": "@/tests",
     "mocks": "@/tests/mocks",
-    "fixtures": "@/tests/fixtures"
+    "fixtures": "@/tests/fixtures",
+    "e2e": "@/tests/e2e",
+    "integration": "@/tests/integration",
+    "unit": "@/tests/unit",
+    "workers": "@/lib/workers",
+    "queues": "@/lib/queues",
+    "cache": "@/lib/cache",
+    "rate-limit": "@/lib/rate-limit",
+    "errors": "@/lib/errors",
+    "logger": "@/lib/logger",
+    "middleware": "@/middleware",
+    "routes": "@/app/routes",
+    "actions": "@/app/actions",
+    "models": "@/lib/models",
+    "prompts": "@/lib/prompts",
+    "agents": "@/lib/agents",
+    "tools": "@/lib/tools",
+    "streams": "@/lib/streams"
   }
 }
