@@ -100,6 +100,9 @@ calling out explicitly:
   describing which function dominated before your change.
 - **Reporting a single run.** One number is an anecdote, not a measurement.
   Always include at least the median and, ideally, a spread (min/max or stddev).
+- **Forgetting to pin dependencies when benchmarking.** Provider SDK versions
+  can materially affect latency; record the exact versions used (`pip freeze`
+  excerpt is fine) alongside your numbers.
 
 When in doubt, err on the side of including more context: a reviewer should be
 able to reproduce your numbers without having to ask follow-up questions.
@@ -108,5 +111,10 @@ able to reproduce your numbers without having to ask follow-up questions.
 
 - All development happens in per-feature branches prefixed with the change
   type and contributor's initials, e.g. `feat/ab_feature_name` or
-  `fix/ab_bug_description`.
-- Approved PRs are merged to the `main` branch via squash-merge.
+  `fix/ab_bug_description`. Other accepted prefixes include `docs/`, `test/`,
+  `refactor/`, and `chore/` for non-functional changes.
+- Keep branches short-lived: rebase onto `main` regularly to avoid large,
+  painful merges, and delete the branch after the PR is merged.
+- Approved PRs are merged to the `main` branch via squash-merge. The squash
+  commit message should follow the same convention as the branch prefix so
+  the history reads cleanly.
