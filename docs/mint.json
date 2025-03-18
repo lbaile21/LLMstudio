@@ -116,7 +116,7 @@
     },
     "request": {
       "example": {
-        "languages": ["curl", "python", "javascript", "go"]
+        "languages": ["curl", "python", "javascript", "go", "typescript"]
       }
     }
   },
@@ -135,6 +135,10 @@
     {
       "source": "/docs/quickstart",
       "destination": "/quickstart"
+    },
+    {
+      "source": "/docs/:slug",
+      "destination": "/:slug"
     },
     {
       "source": "/api",
