@@ -165,6 +165,17 @@ function createToastHandle(id: string) {
   }
 }
 
+/**
+ * Pick an appropriate ARIA role for a toast based on its variant so that
+ * assistive technologies announce destructive/error toasts assertively
+ * while informational toasts use the gentler "status" role.
+ */
+function resolveAriaRole(
+  variant?: ToastProps["variant"]
+): "alert" | "status" {
+  return variant === "destructive" ? "alert" : "status"
+}
+
 function toast({ ...props }: Toast) {
   const id = genId()
   const handle = createToastHandle(id)
@@ -172,6 +183,7 @@ function toast({ ...props }: Toast) {
   dispatch({
     type: "ADD_TOAST",
     toast: {
+      role: resolveAriaRole(props.variant),
       ...props,
       id,
       open: true,
@@ -186,7 +198,8 @@ function toast({ ...props }: Toast) {
 
 /**
  * Convenience helper for emitting an error-style toast with a sensible
- * default title when none is supplied by the caller.
+ * default title when none is supplied by the caller. Always announced
+ * assertively via the destructive variant's "alert" role.
  */
 function toastError(props: Omit<Toast, "variant">) {
   return toast({
@@ -217,4 +230,4 @@ function useToast() {
   }
 }
 
-export { useToast, toast, toastError, clearRemoveQueue }
+export { useToast, toast, toastError, clearRemoveQueue, resolveAriaRole }
