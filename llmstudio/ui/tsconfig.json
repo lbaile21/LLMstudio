@@ -90,8 +90,11 @@
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.e2e.ts",
+    "**/*.e2e.tsx",
+    "**/*.stories.ts",
     "**/*.stories.tsx",
     "**/__mocks__/**",
-    "**/__tests__/**"
+    "**/__tests__/**",
+    "**/__fixtures__/**"
   ]
 }
