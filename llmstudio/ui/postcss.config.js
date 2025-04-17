@@ -1,7 +1,5 @@
 /** @type {import('postcss-load-config').Config} */
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const isProduction = NODE_ENV === 'production';
-const isTest = NODE_ENV === 'test';
 
 /**
  * Base PostCSS plugins applied in every environment.
@@ -37,21 +35,16 @@ const productionPlugins = {
 };
 
 function resolvePlugins(env) {
-  // In test environments we skip Tailwind/autoprefixer entirely to keep
-  // snapshot output deterministic and avoid pulling in browserslist data.
-  if (env === 'test') {
-    return { 'postcss-import': {} };
+  switch (env) {
+    // In test environments we skip Tailwind/autoprefixer entirely to keep
+    // snapshot output deterministic and avoid pulling in browserslist data.
+    case 'test':
+      return { 'postcss-import': {} };
+    case 'production':
+      return { ...basePlugins, ...productionPlugins };
+    default:
+      return basePlugins;
   }
-
-  if (env === 'production') {
-    return { ...basePlugins, ...productionPlugins };
-  }
-
-  return basePlugins;
 }
 
-const plugins = resolvePlugins(
-  isProduction ? 'production' : isTest ? 'test' : 'development',
-);
-
-module.exports = { plugins };
+module.exports = { plugins: resolvePlugins(NODE_ENV) };
