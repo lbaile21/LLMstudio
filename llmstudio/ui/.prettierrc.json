@@ -226,6 +226,13 @@
         "printWidth": 120,
         "trailingComma": "all"
       }
+    },
+    {
+      "files": ["e2e/**/*.ts", "tests/**/*.ts", "playwright/**/*.ts"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "all"
+      }
     }
   ]
 }
