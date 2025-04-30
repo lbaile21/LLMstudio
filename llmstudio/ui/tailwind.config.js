@@ -4,15 +4,32 @@ const colors = require('tailwindcss/colors');
 // Tremor uses a dynamic color system; these patterns ensure the relevant
 // utility classes survive Tailwind's JIT purge step. Keeping the palette and
 // shade lists as arrays (joined once) makes them easier to extend later.
-const tremorColorPalette = [
+const TREMOR_COLOR_NAMES = [
   'slate', 'gray', 'zinc', 'neutral', 'stone',
   'red', 'orange', 'amber', 'yellow', 'lime',
   'green', 'emerald', 'teal', 'cyan', 'sky',
   'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose',
-].join('|');
-const tremorColorShades = '50|100|200|300|400|500|600|700|800|900|950';
-const buildColorPattern = (prefix) =>
-  new RegExp(`^(${prefix}-(?:${tremorColorPalette})-(?:${tremorColorShades}))$`);
+];
+const TREMOR_COLOR_SHADES = [
+  '50', '100', '200', '300', '400',
+  '500', '600', '700', '800', '900', '950',
+];
+
+const tremorColorPalette = TREMOR_COLOR_NAMES.join('|');
+const tremorColorShades = TREMOR_COLOR_SHADES.join('|');
+
+// Precompile a single regex per prefix and memoize so we don't recreate
+// identical RegExp objects on every safelist entry (a minor but free win
+// during config evaluation).
+const patternCache = new Map();
+const buildColorPattern = (prefix) => {
+  if (patternCache.has(prefix)) return patternCache.get(prefix);
+  const re = new RegExp(
+    `^(${prefix}-(?:${tremorColorPalette})-(?:${tremorColorShades}))$`,
+  );
+  patternCache.set(prefix, re);
+  return re;
+};
 
 const interactiveVariants = ['hover', 'focus', 'ui-selected'];
 const interactiveColorPattern = (prefix) => ({
