@@ -29,7 +29,9 @@ reproduce the issue without back-and-forth:
 
 If the bug only appears under concurrency or with streaming responses, please
 call that out explicitly — those code paths are easy to regress and hard to
-diagnose from a static snippet alone.
+diagnose from a static snippet alone. Likewise, flag bugs that only surface
+after a retry or token-refresh, since those often point at state leaking
+between requests.
 
 ## Testing
 
