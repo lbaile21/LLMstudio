@@ -1,5 +1,6 @@
 /** @type {import('postcss-load-config').Config} */
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const isCI = Boolean(process.env.CI);
 
 /**
  * Base PostCSS plugins applied in every environment.
@@ -29,6 +30,8 @@ const productionPlugins = {
         normalizeWhitespace: true,
         mergeLonghand: true,
         colormin: true,
+        // Drop sourcemap annotations in CI to shave a few KB off artifacts.
+        discardSourceMaps: isCI,
       },
     ],
   },
