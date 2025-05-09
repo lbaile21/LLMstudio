@@ -60,7 +60,16 @@
       }
     },
     {
-      "files": ["ACCESSIBILITY.md", "a11y/**/*.md", "docs/a11y/**/*.md", "docs/a11y/**/*.mdx"],
+      "files": [
+        "ACCESSIBILITY.md",
+        "A11Y.md",
+        "a11y/**/*.md",
+        "a11y/**/*.mdx",
+        "docs/a11y/**/*.md",
+        "docs/a11y/**/*.mdx",
+        "docs/accessibility/**/*.md",
+        "docs/accessibility/**/*.mdx"
+      ],
       "options": {
         "printWidth": 80,
         "proseWrap": "always",
@@ -114,6 +123,13 @@
       ],
       "options": {
         "printWidth": 120
+      }
+    },
+    {
+      "files": ["*.a11y.ts", "*.a11y.tsx", "*.axe.ts", "*.axe.tsx"],
+      "options": {
+        "printWidth": 120,
+        "trailingComma": "all"
       }
     },
     {
